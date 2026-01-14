@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "526623223297",
+    "firebase_url": "https://bloodbridge-1a391-default-rtdb.firebaseio.com",
+    "project_id": "bloodbridge-1a391",
+    "storage_bucket": "bloodbridge-1a391.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526623223297:android:8922b4b54c6d7f24a45a00",
+        "android_client_info": {
+          "package_name": "com.example.bloodbridge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyWqFngfeR003C06OuK_u5AMhk4Ut2sp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
