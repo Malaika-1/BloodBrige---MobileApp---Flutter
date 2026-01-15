@@ -111,7 +111,7 @@ class _FindDonorsPageState extends State<FindDonorsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${data['name'] ?? 'No Name'} (${data['bloodGroup'] ?? 'Unknown'})",
+                        "${data['name'] ?? 'No Name'} ",
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
