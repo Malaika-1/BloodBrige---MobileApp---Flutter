@@ -110,11 +110,22 @@ class _FindDonorsPageState extends State<FindDonorsPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "${data['name'] ?? 'No Name'} ",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
+                      FutureBuilder<DataSnapshot>(
+                            future: _dbRef.child('donorsHealthInfo/$donorUid/bloodGroup').get(),
+                            builder: (context, bloodSnapshot) {
+                              final bloodGroup = bloodSnapshot.hasData && bloodSnapshot.data!.exists
+                                  ? bloodSnapshot.data!.value.toString()
+                                  : 'Unknown';
+
+                              return Text(
+                                "${data['name'] ?? 'No Name'} ($bloodGroup)",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              );
+                            },
+                          ),
                       const SizedBox(height: 6),
                       Text("Email: ${data['email'] ?? 'No Email'}"),
                       Text("Contact: ${data['contact'] ?? 'Not Provided'}"),

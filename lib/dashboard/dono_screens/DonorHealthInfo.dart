@@ -15,6 +15,7 @@ class _DonorHealthInfoState extends State<DonorHealthInfo> {
   final _lastDonationController = TextEditingController();
   final _conditionsController = TextEditingController();
   final _medicationsController = TextEditingController();
+  final _bloodGroupController = TextEditingController();
 
   final _dbRef = FirebaseDatabase.instance.ref();
   bool _loading = true;
@@ -38,6 +39,8 @@ class _DonorHealthInfoState extends State<DonorHealthInfo> {
       _lastDonationController.text = data['lastDonationDate'] ?? '';
       _conditionsController.text = data['medicalConditions'] ?? '';
       _medicationsController.text = data['medications'] ?? '';
+      _bloodGroupController.text = data['bloodGroup'] ?? '';
+
     }
 
     setState(() => _loading = false);
@@ -67,6 +70,7 @@ class _DonorHealthInfoState extends State<DonorHealthInfo> {
         'lastDonationDate': _lastDonationController.text.trim(),
         'medicalConditions': _conditionsController.text.trim(),
         'medications': _medicationsController.text.trim(),
+        'bloodGroup': _bloodGroupController.text.trim(),
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -124,6 +128,19 @@ class _DonorHealthInfoState extends State<DonorHealthInfo> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        DropdownButtonFormField<String>(
+                                value: _bloodGroupController.text.isEmpty ? null : _bloodGroupController.text,
+                                items: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+                                    .map((bg) => DropdownMenuItem(value: bg, child: Text(bg)))
+                                    .toList(),
+                                onChanged: (val) => _bloodGroupController.text = val ?? '',
+                                decoration: const InputDecoration(
+                                  labelText: "Blood Group",
+                                  prefixIcon: Icon(Icons.bloodtype),
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+                              const SizedBox(height: 15),
                         _buildTextField("Blood Pressure e.g 120/80", Icons.monitor_heart, _bloodPressureController),
                         const SizedBox(height: 15),
                         _buildTextField("Weight (kg)", Icons.fitness_center, _weightController,

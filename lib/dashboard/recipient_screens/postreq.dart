@@ -137,15 +137,7 @@ class _PostRequestPageState extends State<PostRequestPage> {
         _currentPosition = null;
       });
 
-      // Navigate to Upload Proof page
-      if (requestId != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => UploadProofPage(requestId: requestId),
-          ),
-        );
-      }
+    
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
